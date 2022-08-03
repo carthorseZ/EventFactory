@@ -1,0 +1,240 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['Source']"
+								},
+								"sink": {
+									"name": "Source"
+								}
+							},
+							{
+								"source": {
+									"path": "$['IbisServerCode']"
+								},
+								"sink": {
+									"name": "IbisServerCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Type']"
+								},
+								"sink": {
+									"name": "Type"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Data'][0]['IbisServerCode']"
+								},
+								"sink": {
+									"name": "Data'][0]['IbisServerCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Data'][0]['FullEmailID']"
+								},
+								"sink": {
+									"name": "FullEmailID"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EventProcessedUtcTime']"
+								},
+								"sink": {
+									"name": "EventProcessedUtcTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PartitionId']"
+								},
+								"sink": {
+									"name": "PartitionId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EventEnqueuedUtcTime']"
+								},
+								"sink": {
+									"name": "EventEnqueuedUtcTime"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DailyBookings",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy data2",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['Source']"
+								},
+								"sink": {
+									"name": "Source"
+								}
+							},
+							{
+								"source": {
+									"path": "$['IbisServerCode']"
+								},
+								"sink": {
+									"name": "IbisServerCode"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Type']"
+								},
+								"sink": {
+									"name": "Type"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Data'][0]['FullEmailID']"
+								},
+								"sink": {
+									"name": "FullEmailID"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EventProcessedUtcTime']"
+								},
+								"sink": {
+									"name": "EventProcessedUtcTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PartitionId']"
+								},
+								"sink": {
+									"name": "PartitionId"
+								}
+							},
+							{
+								"source": {
+									"path": "$['EventEnqueuedUtcTime']"
+								},
+								"sink": {
+									"name": "EventEnqueuedUtcTime"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DailyBookings",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
