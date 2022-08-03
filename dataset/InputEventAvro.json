@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "eventsnz/eventshub",
+				"folderPath": "eventsnz/eventshub/0",
 				"container": "eventcontainer"
 			}
 		},
