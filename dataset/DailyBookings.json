@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "DailyBookings",
 				"folderPath": "eventsnz",
 				"container": "eventcontainer"
 			},
