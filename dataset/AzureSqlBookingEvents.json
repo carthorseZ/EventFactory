@@ -1,0 +1,50 @@
+{
+	"name": "AzureSqlBookingEvents",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Source",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IbisServerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Data",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EventProcessedUtcTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "PartitionId",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "EventEnqueuedUtcTime",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "BookingEvent"
+		}
+	}
+}
