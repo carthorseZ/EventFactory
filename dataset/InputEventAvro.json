@@ -1,0 +1,19 @@
+{
+	"name": "InputEventAvro",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureStorageLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Avro",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "eventsnz/eventshub",
+				"container": "eventcontainer"
+			}
+		},
+		"schema": {}
+	}
+}
