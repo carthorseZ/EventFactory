@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "eventsnz/eventshub/0",
+				"fileName": "45.avro",
+				"folderPath": "eventsnz/eventshub/0/2022/08/03/01/03",
 				"container": "eventcontainer"
 			}
 		},
