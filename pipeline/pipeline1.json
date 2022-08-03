@@ -35,7 +35,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false,
@@ -68,18 +68,34 @@
 							},
 							{
 								"source": {
-									"path": "$['Data'][0]['IbisServerCode']"
+									"path": "$['Data']['IbisServerCode']"
 								},
 								"sink": {
-									"name": "Data'][0]['IbisServerCode"
+									"name": "Data_IbisServerCode"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Data'][0]['FullEmailID']"
+									"path": "$['Data']['BookID']"
 								},
 								"sink": {
-									"name": "FullEmailID"
+									"name": "BookID"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Data']['BookName']"
+								},
+								"sink": {
+									"name": "BookName"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Data']['ProductDateTime']"
+								},
+								"sink": {
+									"name": "ProductDateTime"
 								}
 							},
 							{
