@@ -1,0 +1,56 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureStorageLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "eventshub.json",
+				"folderPath": "eventsnz/eventshub",
+				"container": "eventcontainer"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Source": {
+					"type": "string"
+				},
+				"IbisServerCode": {
+					"type": "string"
+				},
+				"Type": {
+					"type": "string"
+				},
+				"Data": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"IbisServerCode": {
+								"type": "string"
+							},
+							"FullEmailID": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"EventProcessedUtcTime": {
+					"type": "string"
+				},
+				"PartitionId": {
+					"type": "integer"
+				},
+				"EventEnqueuedUtcTime": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
