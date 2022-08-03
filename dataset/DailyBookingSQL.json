@@ -10,6 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "DailyBookingFromCSV.csv",
+				"folderPath": "eventsnz",
 				"container": "eventcontainer"
 			},
 			"columnDelimiter": ",",
