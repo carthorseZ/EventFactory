@@ -68,6 +68,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
+						"fileName": "DailyBookings.csv",
 						"folderPath": "eventsnz",
 						"container": "eventcontainer"
 					},
@@ -106,6 +107,7 @@
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
+									"wildcardFileName": "*",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -115,12 +117,13 @@
 							"sink": {
 								"type": "DelimitedTextSink",
 								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
+									"type": "AzureBlobStorageWriteSettings",
+									"copyBehavior": "MergeFiles"
 								},
 								"formatSettings": {
 									"type": "DelimitedTextWriteSettings",
 									"quoteAllText": true,
-									"fileExtension": ".txt"
+									"fileExtension": ".csv"
 								}
 							},
 							"enableStaging": false,
@@ -153,18 +156,34 @@
 									},
 									{
 										"source": {
-											"path": "$['Data'][0]['IbisServerCode']"
+											"path": "$['Data']['IbisServerCode']"
 										},
 										"sink": {
-											"name": "Data'][0]['IbisServerCode"
+											"name": "Data_IbisServerCode"
 										}
 									},
 									{
 										"source": {
-											"path": "$['Data'][0]['FullEmailID']"
+											"path": "$['Data']['BookID']"
 										},
 										"sink": {
-											"name": "FullEmailID"
+											"name": "BookID"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Data']['BookName']"
+										},
+										"sink": {
+											"name": "BookName"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Data']['ProductDateTime']"
+										},
+										"sink": {
+											"name": "ProductDateTime"
 										}
 									},
 									{
@@ -209,120 +228,6 @@
 								"parameters": {}
 							}
 						]
-					},
-					{
-						"name": "Copy data2",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings",
-									"copyBehavior": "FlattenHierarchy"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['Source']"
-										},
-										"sink": {
-											"name": "Source"
-										}
-									},
-									{
-										"source": {
-											"path": "$['IbisServerCode']"
-										},
-										"sink": {
-											"name": "IbisServerCode"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Type']"
-										},
-										"sink": {
-											"name": "Type"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Data'][0]['FullEmailID']"
-										},
-										"sink": {
-											"name": "FullEmailID"
-										}
-									},
-									{
-										"source": {
-											"path": "$['EventProcessedUtcTime']"
-										},
-										"sink": {
-											"name": "EventProcessedUtcTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['PartitionId']"
-										},
-										"sink": {
-											"name": "PartitionId"
-										}
-									},
-									{
-										"source": {
-											"path": "$['EventEnqueuedUtcTime']"
-										},
-										"sink": {
-											"name": "EventEnqueuedUtcTime"
-										}
-									}
-								]
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "Json1",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DailyBookings",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
 					}
 				],
 				"policy": {
@@ -350,8 +255,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "eventshub.json",
-						"folderPath": "eventsnz/eventshub",
+						"folderPath": "eventsnz/eventshub/jsontest",
 						"container": "eventcontainer"
 					}
 				},
